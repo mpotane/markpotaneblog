@@ -1,5 +1,5 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <html lang="en">
@@ -10,7 +10,7 @@
     <meta name="generator" content={Astro.generator} />
     <title>Mark Potane Blog</title>
   </head>
-  <body>
-    <h1>Site still in development</h1>
-  </body>
+  <MainLayout>
+    <h1 class="text-red-500 text-5xl">Site still in development</h1>
+  </MainLayout>
 </html>
