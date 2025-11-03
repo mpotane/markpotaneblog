@@ -1,16 +1,13 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Nav from "../components/Nav.astro";
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Mark Potane Blog</title>
-  </head>
   <MainLayout>
-    <h1 class="text-red-500 text-5xl">Site still in development</h1>
+    <Nav />
+    <section class="container mx-auto max-w-lg justify-center">
+      <h1 class="text-red-500 text-5xl">Site still in development</h1>
+    </section>
   </MainLayout>
 </html>
