@@ -48,16 +48,17 @@ const projects = [
     description="A digital marketing specialist with a strong background in Web Development."
   >
     <Nav />
-    <main class="container mx-auto max-w-2xl px-4 pt-24 pb-10 space-y-10">
+    <main class="container mx-auto max-w-2xl px-4 py-10 space-y-10">
 
       <!-- Profile -->
       <section class="flex items-start gap-5">
-        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gray-700 text-white flex items-center justify-center font-bold text-lg select-none">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg select-none">
           MP
         </div>
         <div>
           <h1 class="text-xl font-bold mb-1">Mark Edzel Potane</h1>
-          <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+          <p class="text-sm text-gray-500 mb-3">markpotanecc@gmail.com</p>
+          <p class="text-sm text-gray-700 mb-4 leading-relaxed">
             A digital marketing specialist with a strong background in Web Development,
             helping businesses grow their online presence through data-driven strategies
             and modern web technologies.
@@ -65,31 +66,31 @@ const projects = [
           <div class="flex gap-2">
             <a
               href="mailto:markpotanecc@gmail.com"
-              class="px-4 py-1.5 bg-gray-100 text-gray-900 text-sm rounded hover:bg-white transition-colors"
+              class="px-4 py-1.5 bg-gray-900 text-white text-sm rounded hover:bg-gray-700 transition-colors"
             >Email</a>
             <a
               href="tel:+639653865805"
-              class="px-4 py-1.5 border border-[#292524] text-sm rounded hover:bg-gray-800 transition-colors"
+              class="px-4 py-1.5 border border-gray-300 text-sm rounded hover:bg-gray-50 transition-colors"
             >Call / Text</a>
           </div>
         </div>
       </section>
 
-      <hr class="border-[#292524]" />
+      <hr class="border-gray-200" />
 
       <!-- Tools -->
       <section id="about">
         <h2 class="text-sm font-semibold mb-4">🛠️ Tools</h2>
         <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {tools.map((tool) => (
-            <span class="text-xs text-center border border-[#292524] rounded px-2 py-2 text-gray-400">
+            <span class="text-xs text-center border border-gray-200 rounded px-2 py-2 text-gray-600">
               {tool}
             </span>
           ))}
         </div>
       </section>
 
-      <hr class="border-[#292524]" />
+      <hr class="border-gray-200" />
 
       <!-- Socials -->
       <section>
@@ -100,7 +101,7 @@ const projects = [
               href="https://www.linkedin.com/in/mpotane/"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-300 hover:underline"
+              class="text-gray-700 hover:underline"
             >LinkedIn →</a>
           </li>
           <li>
@@ -108,16 +109,16 @@ const projects = [
               href="https://github.com/mpotane"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-300 hover:underline"
+              class="text-gray-700 hover:underline"
             >GitHub →</a>
           </li>
           <li>
-            <a href="/blog" class="text-gray-300 hover:underline">Blog →</a>
+            <a href="/blog" class="text-gray-700 hover:underline">Blog →</a>
           </li>
         </ul>
       </section>
 
-      <hr class="border-[#292524]" />
+      <hr class="border-gray-200" />
 
       <!-- Blog Posts -->
       <section>
@@ -127,7 +128,7 @@ const projects = [
             <li>
               <a
                 href={`/blog/post/${post.data.slug}`}
-                class="text-sm text-gray-200 hover:underline"
+                class="text-sm text-gray-800 hover:underline"
               >
                 {post.data.title}
               </a>
@@ -136,7 +137,7 @@ const projects = [
         </ul>
       </section>
 
-      <hr class="border-[#292524]" />
+      <hr class="border-gray-200" />
 
       <!-- Projects -->
       <section id="projects">
@@ -147,14 +148,14 @@ const projects = [
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block border border-[#292524] rounded-lg p-4 hover:border-[#292524] transition-colors"
+              class="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
             >
               <p class="text-sm font-medium mb-1">{project.name}</p>
               <p class="text-xs text-gray-500 mb-3">{project.desc}</p>
               <div class="flex items-center gap-3 text-xs text-gray-400">
                 <span>★ {project.stars}</span>
                 <span>⑂ {project.forks}</span>
-                <span class="bg-gray-800 text-gray-300 px-2 py-0.5 rounded-full">{project.lang}</span>
+                <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{project.lang}</span>
               </div>
             </a>
           ))}
@@ -163,7 +164,7 @@ const projects = [
 
     </main>
 
-    <footer class="border-t border-[#292524] mt-10">
+    <footer class="border-t border-gray-100 mt-10">
       <div class="container mx-auto max-w-2xl px-4 py-6 text-center text-xs text-gray-400">
         © Copyright 2026 @mpotane. All rights reserved.
       </div>

@@ -9,6 +9,12 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
 
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

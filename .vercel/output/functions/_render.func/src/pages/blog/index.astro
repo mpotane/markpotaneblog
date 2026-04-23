@@ -1,0 +1,55 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Nav from "../../components/Nav.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort(
+  (a, b) =>
+    new Date(b.data.datePublished).getTime() -
+    new Date(a.data.datePublished).getTime()
+);
+---
+
+<html lang="en">
+  <MainLayout
+    title="Blog — Mark Edzel Potane"
+    description="Articles about web development, digital marketing, and technology."
+  >
+    <Nav />
+    <main class="container mx-auto max-w-2xl px-4 py-10">
+      <h1 class="text-2xl font-bold mb-8">Blog</h1>
+      <div class="flex flex-col gap-8">
+        {sortedPosts.map((post) => (
+          <article class="border-b border-gray-100 pb-8 last:border-0">
+            <a href={`/blog/post/${post.data.slug}`} class="block group">
+              <h2 class="text-lg font-semibold group-hover:underline mb-2">
+                {post.data.title}
+              </h2>
+            </a>
+            <p class="text-sm text-gray-400 mb-2">
+              {new Date(post.data.datePublished).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <p class="text-sm text-gray-600 mb-3">{post.data.seoDescription}</p>
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag) => (
+                <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </main>
+    <footer class="border-t border-gray-100 mt-10">
+      <div class="container mx-auto max-w-2xl px-4 py-6 text-center text-xs text-gray-400">
+        © Copyright 2026 @mpotane. All rights reserved.
+      </div>
+    </footer>
+  </MainLayout>
+</html>

@@ -4,7 +4,7 @@ seoTitle: "How to Setup Fish in WSL by Mark Edzel Potane"
 seoDescription: "Learn how to set up Fish shell in WSL2: install, configure, and use Fish to enhance your command-line experience in Windows. #Fish #WSL2"
 datePublished: Wed Feb 22 2023 12:37:40 GMT+0000 (Coordinated Universal Time)
 slug: how-to-set-up-fish-shell-in-wsl-2
-tags: linux, software-engineering, fishshell, wsl-2
+tags: [linux, software-engineering, fishshell, wsl-2]
 ---
 
 ### **Let's talk about why fish. Why not use zsh?**
@@ -16,7 +16,7 @@ tags: linux, software-engineering, fishshell, wsl-2
 * No need to learn works without configuration (beginner-friendly).
     
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1672709850830/44ef185e-b2f5-487c-a7ab-921381cc49f3.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1672709850830/44ef185e-b2f5-487c-a7ab-921381cc49f3.png)
 
 First, we need to install fish using the command:
 
@@ -27,7 +27,7 @@ sudo apt install fish
 
 Now we need to set fish-shell as our default shell.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695990828610/b49c2c1d-fdcc-4671-aa63-3f6a1ad09847.gif align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695990828610/b49c2c1d-fdcc-4671-aa63-3f6a1ad09847.gif)
 
 copy this command at the end of the line.
 
@@ -45,7 +45,7 @@ sudo chsh -s /usr/bin/fish username
 
 *<mark>Note: Restart your terminal and see if it works.</mark>*
 
-![](https://media.giphy.com/media/3o6fJ1BM7R2EBRDnxK/giphy.gif align="center")
+![](https://media.giphy.com/media/3o6fJ1BM7R2EBRDnxK/giphy.gif)
 
 **Now we have fish as our default shell.**
 
@@ -77,7 +77,7 @@ fisher install edc/bass
 
 To use bass we can configure fish like so:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695992828669/424e338d-c90e-4c82-9aef-235cbc9c9f3a.gif align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695992828669/424e338d-c90e-4c82-9aef-235cbc9c9f3a.gif)
 
 🖊️ Copy the command in `.config/fish/config.fish`
 
@@ -100,7 +100,7 @@ fisher install jorgebucaran/autopair.fish
 fisher install jethrokuan/z
 ```
 
-![](https://media.giphy.com/media/SVH9y2LQUVVCRcqD7o/giphy.gif align="center")
+![](https://media.giphy.com/media/SVH9y2LQUVVCRcqD7o/giphy.gif)
 
 ---
 
@@ -119,7 +119,7 @@ curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin/
 
 Next, we need to initialize it using our shell.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695992879846/635b57a7-a505-4145-ac3a-30366d5d3df8.gif align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695992879846/635b57a7-a505-4145-ac3a-30366d5d3df8.gif)
 
 ```bash
 # Add this to your fish config.
@@ -144,6 +144,6 @@ fisher install jorgebucaran/nvm.fish
 
 ***<mark>Note: Restart your terminal to make sure all changes take effect.</mark>***
 
-![](https://media.giphy.com/media/DAtJCG1t3im1G/giphy.gif align="center")
+![](https://media.giphy.com/media/DAtJCG1t3im1G/giphy.gif)
 
 Don't forget to follow 🌏 my socials and subscribe to my 💌 newsletter.

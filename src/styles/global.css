@@ -1,1 +1,94 @@
 @import "tailwindcss";
+
+.prose {
+  line-height: 1.75;
+  color: #d1d5db;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+.prose h1 { font-size: 1.875rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+.prose h4 { font-size: 1.125rem; }
+
+.prose p { margin-bottom: 1em; }
+
+.prose ul,
+.prose ol {
+  padding-left: 1.75rem;
+  margin-bottom: 1em;
+}
+
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+
+.prose li { margin-bottom: 0.375em; }
+
+.prose a {
+  color: #60a5fa;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose strong { font-weight: 700; }
+.prose em { font-style: italic; }
+
+.prose code {
+  background-color: #1f2937;
+  padding: 0.125em 0.375em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, monospace;
+}
+
+.prose pre {
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.25em;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose blockquote {
+  border-left: 1px solid #292524;
+  padding-left: 1rem;
+  color: #9ca3af;
+  margin: 1em 0;
+  font-style: italic;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid #292524;
+  margin: 2em 0;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5em 0;
+}
+
+.prose mark {
+  background-color: #78350f;
+  color: #fef3c7;
+  padding: 0.125em 0.25em;
+  border-radius: 0.25rem;
+}
