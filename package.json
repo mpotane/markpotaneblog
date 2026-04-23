@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/vercel": "^8.2.1",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/vercel": "^10.0.5",
     "@fontsource/geist-sans": "^5.2.5",
-    "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.11.0",
-    "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3"
+    "@tailwindcss/vite": "^4.2.4",
+    "astro": "^6.1.9",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8",
+  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8",
   "devDependencies": {
     "prettier-plugin-astro": "^0.14.1"
   }
