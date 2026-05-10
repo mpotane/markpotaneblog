@@ -2,30 +2,33 @@
 import { getCollection, render } from "astro:content";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import Nav from "../../../components/Nav.astro";
+import { BlogPostSchema } from "../../../content.config";
 
 const { slug } = Astro.params;
 
 const posts = await getCollection("blog");
-const post = posts.find((p) => p.data.slug === slug);
+const rawPost = posts.find((p) => {
+  const parsed = BlogPostSchema.safeParse(p.data);
+  return parsed.success && parsed.data.slug === slug;
+});
 
-if (!post) {
-  return Astro.redirect("/404");
-}
+if (!rawPost) return Astro.redirect("/404");
 
-const { Content } = await render(post);
+const data = BlogPostSchema.parse(rawPost.data);
+const { Content } = await render(rawPost);
 ---
 
 <html lang="en">
-  <MainLayout title={post.data.seoTitle} description={post.data.seoDescription}>
+  <MainLayout title={data.seoTitle} description={data.seoDescription}>
     <Nav />
     <main class="container mx-auto max-w-2xl px-4 pt-24 pb-10">
       <article>
         <header class="mb-8">
           <a href="/blog" class="text-sm text-gray-400 hover:underline mb-4 inline-block">← Back to Blog</a>
-          <h1 class="text-3xl font-bold mb-3">{post.data.title}</h1>
+          <h1 class="text-3xl font-bold mb-3">{data.title}</h1>
           <div class="flex flex-wrap items-center gap-3 text-sm text-gray-400">
             <time>
-              {new Date(post.data.datePublished).toLocaleDateString("en-US", {
+              {new Date(data.datePublished).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -33,7 +36,7 @@ const { Content } = await render(post);
             </time>
             <span>·</span>
             <div class="flex flex-wrap gap-2">
-              {post.data.tags.map((tag) => (
+              {data.tags.map((tag) => (
                 <span class="bg-gray-800 text-gray-400 px-2 py-0.5 rounded-full text-xs">
                   {tag}
                 </span>
