@@ -3,14 +3,15 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Nav from "../components/Nav.astro";
 import { getCollection } from "astro:content";
 import { z } from "zod";
+import { BlogPostSchema } from "../content.config";
 
 const posts = await getCollection("blog");
 const recentPosts = posts
-  .sort(
-    (a, b) =>
-      new Date(b.data.datePublished).getTime() -
-      new Date(a.data.datePublished).getTime()
-  )
+  .flatMap((p) => {
+    const parsed = BlogPostSchema.safeParse(p.data);
+    return parsed.success ? [{ ...p, data: parsed.data }] : [];
+  })
+  .sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime())
   .slice(0, 3);
 
 const tools = ["Semrush", "Meta Ads", "GA4", "Google Ads", "Next.js", "React.js"];
