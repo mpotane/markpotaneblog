@@ -14,32 +14,59 @@ const recentPosts = posts
 
 const tools = ["Semrush", "Meta Ads", "GA4", "Google Ads", "Next.js", "React.js"];
 
-const projects = [
-  {
-    name: "PythonScriptPH",
-    desc: "A collection of Python scripts to help you learn the language. 🇵🇭",
-    lang: "Python",
-    stars: 0,
-    forks: 0,
-    url: "https://github.com/mpotane/PythonScriptPH",
+type GithubRepo = {
+  id: string;
+  name: string;
+  stargazerCount: number;
+  forkCount: number;
+  description: string | null;
+  languages: { edges: { node: { name: string; color: string } }[] };
+  url: string;
+};
+
+const githubQuery = `
+  query {
+    viewer {
+      pinnedItems(first: 6) {
+        edges {
+          node {
+            ... on Repository {
+              id
+              name
+              stargazerCount
+              forkCount
+              description
+              languages(first: 1, orderBy: { field: SIZE, direction: DESC }) {
+                edges {
+                  node {
+                    name
+                    color
+                  }
+                }
+              }
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const githubRes = await fetch("https://api.github.com/graphql", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
   },
-  {
-    name: "void-packettracer",
-    desc: "Script for installing packettracer on void linux",
-    lang: "Shell",
-    stars: 0,
-    forks: 0,
-    url: "https://github.com/mpotane/void-packettracer",
-  },
-  {
-    name: "markybot",
-    desc: "Personal bot built using langchain and openai",
-    lang: "Python",
-    stars: 0,
-    forks: 0,
-    url: "https://github.com/mpotane/markybot",
-  },
-];
+  body: JSON.stringify({ query: githubQuery }),
+});
+
+const githubData = await githubRes.json();
+const projects: GithubRepo[] =
+  githubData.data?.viewer?.pinnedItems?.edges?.map(
+    (e: { node: GithubRepo }) => e.node
+  ) ?? [];
 ---
 
 <html lang="en">
@@ -150,11 +177,18 @@ const projects = [
               class="block border border-[#292524] rounded-lg p-4 hover:border-[#292524] transition-colors"
             >
               <p class="text-sm font-medium mb-1">{project.name}</p>
-              <p class="text-xs text-gray-500 mb-3">{project.desc}</p>
+              <p class="text-xs text-gray-500 mb-3">{project.description}</p>
               <div class="flex items-center gap-3 text-xs text-gray-400">
-                <span>★ {project.stars}</span>
-                <span>⑂ {project.forks}</span>
-                <span class="bg-gray-800 text-gray-300 px-2 py-0.5 rounded-full">{project.lang}</span>
+                <span>★ {project.stargazerCount}</span>
+                <span>⑂ {project.forkCount}</span>
+                {project.languages.edges[0] && (
+                  <span
+                    class="px-2 py-0.5 rounded-full text-gray-300"
+                    style={`background-color: ${project.languages.edges[0].node.color}22; border: 1px solid ${project.languages.edges[0].node.color}55`}
+                  >
+                    {project.languages.edges[0].node.name}
+                  </span>
+                )}
               </div>
             </a>
           ))}
