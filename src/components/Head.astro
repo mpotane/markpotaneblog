@@ -15,5 +15,8 @@ import { ClientRouter } from "astro:transitions";
     {description && <meta name="description" content={description} />}
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/jpeg" href="/gt.jpg" />
+    <meta property="og:image" content={`${Astro.url.origin}/gt.jpg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${Astro.url.origin}/gt.jpg`} />
     <ClientRouter />
 </head>
