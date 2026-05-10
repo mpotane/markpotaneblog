@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Nav from "../components/Nav.astro";
 import { getCollection } from "astro:content";
+import { z } from "zod";
 
 const posts = await getCollection("blog");
 const recentPosts = posts
@@ -14,15 +15,31 @@ const recentPosts = posts
 
 const tools = ["Semrush", "Meta Ads", "GA4", "Google Ads", "Next.js", "React.js"];
 
-type GithubRepo = {
-  id: string;
-  name: string;
-  stargazerCount: number;
-  forkCount: number;
-  description: string | null;
-  languages: { edges: { node: { name: string; color: string } }[] };
-  url: string;
-};
+const GithubRepoSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  stargazerCount: z.number(),
+  forkCount: z.number(),
+  description: z.string().nullable(),
+  languages: z.object({
+    edges: z.array(
+      z.object({ node: z.object({ name: z.string(), color: z.string() }) })
+    ),
+  }),
+  url: z.string().url(),
+});
+
+const GithubResponseSchema = z.object({
+  data: z.object({
+    viewer: z.object({
+      pinnedItems: z.object({
+        edges: z.array(z.object({ node: GithubRepoSchema })),
+      }),
+    }),
+  }),
+});
+
+type GithubRepo = z.infer<typeof GithubRepoSchema>;
 
 const githubQuery = `
   query {
@@ -62,11 +79,10 @@ const githubRes = await fetch("https://api.github.com/graphql", {
   body: JSON.stringify({ query: githubQuery }),
 });
 
-const githubData = await githubRes.json();
-const projects: GithubRepo[] =
-  githubData.data?.viewer?.pinnedItems?.edges?.map(
-    (e: { node: GithubRepo }) => e.node
-  ) ?? [];
+const parsed = GithubResponseSchema.safeParse(await githubRes.json());
+const projects: GithubRepo[] = parsed.success
+  ? parsed.data.data.viewer.pinnedItems.edges.map((e) => e.node)
+  : [];
 ---
 
 <html lang="en">
